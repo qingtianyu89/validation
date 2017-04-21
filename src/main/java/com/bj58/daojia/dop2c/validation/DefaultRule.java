@@ -1,11 +1,11 @@
-package com.yzf.dop.validation;
+package com.bj58.daojia.dop2c.validation;
 
 import com.google.common.base.Function;
 import com.google.common.base.Joiner;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
-import com.yzf.dop.validation.condition.Condition;
-import com.yzf.dop.validation.condition.ConditionEnum;
+import com.bj58.daojia.dop2c.validation.condition.Condition;
+import com.bj58.daojia.dop2c.validation.condition.ConditionEnum;
 import org.springframework.util.StringUtils;
 
 import java.lang.ref.Reference;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Stack;
 
 /**
- * Created by yezhufeng on 2016/11/25.
+ * Created by pangming on 2016/11/25.
  */
 public class DefaultRule extends AbstractRule {
 

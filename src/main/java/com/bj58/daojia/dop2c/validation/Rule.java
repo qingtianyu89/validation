@@ -1,7 +1,7 @@
-package com.yzf.dop.validation;
+package com.bj58.daojia.dop2c.validation;
 
 /**
- * Created by yezhufeng on 2016/11/29.
+ * Created by pangming on 2016/11/29.
  */
 public interface Rule{
 

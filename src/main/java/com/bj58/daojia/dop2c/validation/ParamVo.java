@@ -1,8 +1,8 @@
-package com.yzf.dop.validation;
+package com.bj58.daojia.dop2c.validation;
 
 import com.google.common.collect.Lists;
 import com.google.common.primitives.Ints;
-import com.yzf.dop.validation.condition.Condition;
+import com.bj58.daojia.dop2c.validation.condition.Condition;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Stack;
 
 /**
- * Created by yezhufeng on 2016/11/25.
+ * Created by pangming on 2016/11/25.
  */
 public class ParamVo {
 

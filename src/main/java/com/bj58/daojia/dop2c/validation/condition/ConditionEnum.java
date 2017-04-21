@@ -1,11 +1,11 @@
-package com.yzf.dop.validation.condition;
+package com.bj58.daojia.dop2c.validation.condition;
 
+import com.bj58.daojia.dop2c.validation.Item;
+import com.bj58.daojia.dop2c.validation.NotCheck;
+import com.bj58.daojia.dop2c.validation.ParamVo;
 import com.google.common.base.Preconditions;
 import com.google.common.primitives.Ints;
-import com.yzf.dop.validation.Item;
-import com.yzf.dop.validation.NotCheck;
-import com.yzf.dop.validation.ParamVo;
-import com.yzf.dop.validation.RuleUtils;
+import com.bj58.daojia.dop2c.validation.RuleUtils;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
@@ -19,7 +19,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Created by yezhufeng on 2016/11/25.
+ * Created by pangming on 2016/11/25.
  * 匹配默认条件
  */
 public enum ConditionEnum implements Condition {

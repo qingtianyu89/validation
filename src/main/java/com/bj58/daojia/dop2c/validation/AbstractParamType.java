@@ -1,15 +1,15 @@
-package com.yzf.dop.validation;
+package com.bj58.daojia.dop2c.validation;
 
 import com.google.common.collect.Lists;
-import com.yzf.dop.validation.condition.Condition;
-import com.yzf.dop.validation.condition.ConditionEnum;
-import com.yzf.dop.validation.condition.ConditionIdentity;
+import com.bj58.daojia.dop2c.validation.condition.Condition;
+import com.bj58.daojia.dop2c.validation.condition.ConditionEnum;
+import com.bj58.daojia.dop2c.validation.condition.ConditionIdentity;
 
 import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by yezhufeng on 2016/12/5.
+ * Created by pangming on 2016/12/5.
  * 抽象类型，为自定义类型提供扩展
  */
 public abstract class AbstractParamType implements ParamType {

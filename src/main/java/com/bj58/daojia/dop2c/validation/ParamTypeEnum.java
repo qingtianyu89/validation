@@ -1,15 +1,15 @@
-package com.yzf.dop.validation;
+package com.bj58.daojia.dop2c.validation;
 
 import com.google.common.collect.Lists;
-import com.yzf.dop.validation.condition.Condition;
-import com.yzf.dop.validation.condition.ConditionEnum;
+import com.bj58.daojia.dop2c.validation.condition.Condition;
+import com.bj58.daojia.dop2c.validation.condition.ConditionEnum;
 
 import java.lang.ref.Reference;
 import java.math.BigDecimal;
 import java.util.List;
 
 /**
- * Created by yezhufeng on 2016/11/25.
+ * Created by pangming on 2016/11/25.
  * 通过参数类型获取指定类型的匹配条件
  * 条件可自定义，需要继承{@link ConditionIdentity}
  * 支持自定义类型对象，自定义对象中的field，可通过{@link NotCheck}配置是否需要匹配，以及{@link Item}来定义匹配规则

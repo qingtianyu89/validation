@@ -1,10 +1,10 @@
-package com.yzf.dop.validation.condition;
+package com.bj58.daojia.dop2c.validation.condition;
 
 
-import com.yzf.dop.validation.ParamVo;
+import com.bj58.daojia.dop2c.validation.ParamVo;
 
 /**
- * Created by yezhufeng on 2016/11/28.
+ * Created by pangming on 2016/11/28.
  * 匹配条件
  */
 public interface Condition {

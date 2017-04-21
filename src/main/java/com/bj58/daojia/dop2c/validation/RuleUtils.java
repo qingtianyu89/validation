@@ -1,4 +1,4 @@
-package com.yzf.dop.validation;
+package com.bj58.daojia.dop2c.validation;
 
 import com.google.common.base.Preconditions;
 import com.google.common.base.Splitter;
@@ -11,7 +11,7 @@ import java.util.Collections;
 import java.util.Map;
 
 /**
- * Created by yezhufeng on 2016/11/28.
+ * Created by pangming on 2016/11/28.
  */
 public class RuleUtils {
 

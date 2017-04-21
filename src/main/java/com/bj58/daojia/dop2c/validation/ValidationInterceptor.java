@@ -1,14 +1,13 @@
-package com.yzf.dop.validation;
+package com.bj58.daojia.dop2c.validation;
 
 import com.alibaba.fastjson.JSONObject;
+import com.bj58.daojia.dop2c.common.AbsValidationConfig;
+import com.bj58.daojia.dop2c.common.ThreadLocalHolder;
+import com.bj58.daojia.dop2c.utils.FileUtil;
 import com.google.common.base.Joiner;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.google.common.primitives.Ints;
-import com.yzf.dop.common.ErrorEnum;
-import com.yzf.dop.common.HttpJsonResponse;
-import com.yzf.dop.common.ResponseDto;
-import com.yzf.dop.common.ThreadLocalHolder;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
@@ -16,11 +15,18 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.context.request.ServletWebRequest;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -33,14 +39,21 @@ import java.util.Map;
  * 支持controller，service， 匹配到参数错误时controller返回json，service抛出异常
  * 使用方法：
  * 在方法上增加: {@link Validation}注解即可，具体配置规则可以查看该注解
+ *  *** 引入参数校验切面
+ *            需要：1.aop 命名空间
+ *                 2.aop 扫描配置  <aop:aspectj-autoproxy/>
+ *                 3.bean注入  <bean id="validationInterceptor" class="ValidationInterceptor" />
+ *                         或者加入扫描配置文件 <context:component-scan base-package="com.bj58.daojia"/>
+ *                 4.继承 @{{@link AbsValidationConfig}} 配置参数错误时需要返回的值
  */
 @Component
 @Aspect
-public class ValidationInterceptor implements Ordered{
+public class ValidationInterceptor implements Ordered, InitializingBean {
 
     private static Logger logger = LoggerFactory.getLogger(ValidationInterceptor.class);
+    private static Class absValidationConfigClass;
 
-    @Around(value = "execution(* com.bj58.daojia.dop2c..*..*.*(..)) && @annotation(validation)")
+    @Around(value = "@annotation(validation)")
     public Object before(ProceedingJoinPoint joinPoint, Validation validation) throws Throwable {
         Object[] args = joinPoint.getArgs();
         if (args == null || args.length == 0) {//没有参数直接返回
@@ -56,21 +69,21 @@ public class ValidationInterceptor implements Ordered{
         if (illegalParamsMap.isEmpty()) {
             return joinPoint.proceed();
         }
-        String uri = ThreadLocalHolder.getRequest().getRequestURI();
+
         //参数错误描述
         String errorMsg = getParamsDesc(validation, illegalParamsMap);
-        logger.info("uri={}, 匹配到不合法的参数：参数值={}, 错误描述={}", uri, JSONObject.toJSONString(args), errorMsg);
-
-        if(signature instanceof MethodSignature){
-            MethodSignature methodSignature = (MethodSignature)signature;
-            Method targetMethod = methodSignature.getMethod();
-            if(targetMethod.getReturnType().equals(ResponseDto.class)){
-                return ResponseDto.createErrorDto(ErrorEnum.PARAM_ERROR, errorMsg);
-            }
+        logger.info("匹配到不合法的参数：参数值={}, 错误描述={}", JSONObject.toJSONString(args), errorMsg);
+        AbsValidationConfig validationConfig;
+        try {
+            validationConfig = getValidationConfig(joinPoint, args, errorMsg);
+        } catch (Exception e) {
+            return joinPoint.proceed();
         }
-        HttpJsonResponse httpJsonResponse = new HttpJsonResponse(ThreadLocalHolder.getResponse());
-        httpJsonResponse.write(ResponseDto.createErrorDto(ErrorEnum.PARAM_ERROR, errorMsg));
-        return httpJsonResponse;
+        try {
+            return validationConfig.getParamErrorReturn();
+        } catch (Exception e) {
+            throw e;
+        }
     }
 
     /**
@@ -138,15 +151,6 @@ public class ValidationInterceptor implements Ordered{
         return illegalParamsMap;
     }
 
-    private Method getTargetSignleMethod(Class<?> aClazz, String methodName, Object[] args){
-        Method[] declaredMethods = aClazz.getDeclaredMethods();
-        for (Method declaredMethod : declaredMethods) {
-            if(declaredMethod.getName().equals(methodName)){
-                return declaredMethod;
-            }
-        }
-        return null;
-    }
 
     /**
      * 实例化rule
@@ -167,6 +171,7 @@ public class ValidationInterceptor implements Ordered{
 
     /**
      * 获取参数名称
+     *
      * @param joinPoint
      * @return
      */
@@ -194,8 +199,7 @@ public class ValidationInterceptor implements Ordered{
         }
         Preconditions.checkNotNull(method);
         LocalVariableTableParameterNameDiscoverer parameterNameDiscoverer = new LocalVariableTableParameterNameDiscoverer();
-        String[] parameterNames = parameterNameDiscoverer.getParameterNames(method);
-        return parameterNames;
+        return parameterNameDiscoverer.getParameterNames(method);
     }
 
     /**
@@ -225,8 +229,17 @@ public class ValidationInterceptor implements Ordered{
             String argDesc = entry.getValue();
             descList.add(argDesc);
         }
-        String msg = Joiner.on(";").join(descList);
-        return msg;
+        return Joiner.on(";").join(descList);
+    }
+
+    private void initThreadLocal() {
+        RequestAttributes ra = RequestContextHolder.getRequestAttributes();
+        ServletRequestAttributes sra = (ServletRequestAttributes) ra;
+        HttpServletRequest request = sra.getRequest();
+        ServletWebRequest servletWebRequest = new ServletWebRequest(request);
+        HttpServletResponse response = servletWebRequest.getResponse();
+        ThreadLocalHolder.setRequest(request);
+        ThreadLocalHolder.setResponse(response);
     }
 
     /**
@@ -250,4 +263,23 @@ public class ValidationInterceptor implements Ordered{
     public int getOrder() {
         return 1;
     }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        //匹配到absValidationConfig
+        logger.info("初始化 AbsValidationConfig");
+        Class aClass = FileUtil.matchSon(AbsValidationConfig.class);
+        if(aClass == null){
+            throw new ClassNotFoundException("AbsValidationConfig 继承类没有发现");
+        }
+        absValidationConfigClass = aClass;
+    }
+
+    private AbsValidationConfig getValidationConfig(ProceedingJoinPoint joinPoint, Object[] args, String errorMsg) throws Exception {
+        Preconditions.checkNotNull(absValidationConfigClass);
+        Constructor<AbsValidationConfig> constructor = absValidationConfigClass.getConstructor(ProceedingJoinPoint.class,
+                Object[].class, String.class);
+        return constructor.newInstance(joinPoint, args, errorMsg);
+    }
+
 }

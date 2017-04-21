@@ -1,12 +1,12 @@
-package com.yzf.dop.validation;
+package com.bj58.daojia.dop2c.validation;
 
 
-import com.yzf.dop.validation.condition.Condition;
+import com.bj58.daojia.dop2c.validation.condition.Condition;
 
 import java.util.List;
 
 /**
- * Created by yezhufeng on 2016/12/5.
+ * Created by pangming on 2016/12/5.
  */
 public class IdParamType extends AbstractParamType {
 

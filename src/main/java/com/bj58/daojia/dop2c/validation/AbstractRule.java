@@ -1,7 +1,7 @@
-package com.yzf.dop.validation;
+package com.bj58.daojia.dop2c.validation;
 
 import com.google.common.base.Preconditions;
-import com.yzf.dop.validation.condition.Condition;
+import com.bj58.daojia.dop2c.validation.condition.Condition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
@@ -9,7 +9,7 @@ import org.springframework.util.StringUtils;
 import java.util.List;
 
 /**
- * Created by yezhufeng on 2016/11/25.
+ * Created by pangming on 2016/11/25.
  * 匹配规则
  */
 public abstract class AbstractRule implements Rule {

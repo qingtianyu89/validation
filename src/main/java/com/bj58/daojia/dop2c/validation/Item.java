@@ -1,9 +1,9 @@
-package com.yzf.dop.validation;
+package com.bj58.daojia.dop2c.validation;
 
 import java.lang.annotation.*;
 
 /**
- * Created by yezhufeng on 2016/11/25.
+ * Created by pangming on 2016/11/25.
  */
 @Target({ElementType.TYPE, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
