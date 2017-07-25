@@ -2,7 +2,7 @@ package com.bj58.daojia.dop2c.validation;
 
 import com.alibaba.fastjson.JSONObject;
 import com.bj58.daojia.dop2c.common.AbsValidationConfig;
-import com.bj58.daojia.dop2c.common.ThreadLocalHolder;
+import com.bj58.daojia.dop2c.common.ValidationHolder;
 import com.bj58.daojia.dop2c.utils.FileUtil;
 import com.google.common.base.Joiner;
 import com.google.common.base.Preconditions;
@@ -64,7 +64,7 @@ public class ValidationInterceptor implements Ordered, InitializingBean {
         Map<Integer, String> illegalParamsMap = invokeValidation(joinPoint, validation);
         long endTime = System.currentTimeMillis();
         Signature signature = joinPoint.getSignature();
-        logger.info("方法 {}，参数校验时间为：{}", signature.getName(), endTime - startTime);
+        logger.debug("方法 {}，参数校验时间为：{}", signature.getName(), endTime - startTime);
         //参数都合法
         if (illegalParamsMap.isEmpty()) {
             return joinPoint.proceed();
@@ -238,8 +238,8 @@ public class ValidationInterceptor implements Ordered, InitializingBean {
         HttpServletRequest request = sra.getRequest();
         ServletWebRequest servletWebRequest = new ServletWebRequest(request);
         HttpServletResponse response = servletWebRequest.getResponse();
-        ThreadLocalHolder.setRequest(request);
-        ThreadLocalHolder.setResponse(response);
+        ValidationHolder.setRequest(request);
+        ValidationHolder.setResponse(response);
     }
 
     /**
@@ -270,7 +270,8 @@ public class ValidationInterceptor implements Ordered, InitializingBean {
         logger.info("初始化 AbsValidationConfig");
         Class aClass = FileUtil.matchSon(AbsValidationConfig.class);
         if(aClass == null){
-            throw new ClassNotFoundException("AbsValidationConfig 继承类没有发现");
+            logger.warn("AbsValidationConfig 继承类没有发现, validationInterceptor不生效");
+            return;
         }
         absValidationConfigClass = aClass;
     }

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
  * @description 线程变量管理器
  * @since 1.0
  */
-public class ThreadLocalHolder {
+public class ValidationHolder {
 
     private static ThreadLocal<String> localToken = new ThreadLocal<String>();
     private static ThreadLocal<HttpServletRequest> localRequest = new ThreadLocal<HttpServletRequest>();

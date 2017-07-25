@@ -6,7 +6,7 @@
 
     <groupId>com.daojia.dop2c</groupId>
     <artifactId>validation</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.2-SNAPSHOT</version>
 
     <properties>
         <spring.version>4.0.6.RELEASE</spring.version>
