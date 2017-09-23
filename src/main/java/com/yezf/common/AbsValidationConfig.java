@@ -23,9 +23,6 @@ public abstract class AbsValidationConfig {
     private HttpServletRequest request;
     private HttpServletResponse response;
 
-    private AbsValidationConfig() {
-    }//默认构造方法私有化
-
     public AbsValidationConfig(ProceedingJoinPoint joinPoint, Object[] args, String errorMsg) {
         this.joinPoint = joinPoint;
         this.args = args;
