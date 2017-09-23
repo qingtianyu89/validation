@@ -1,13 +1,11 @@
 package com.yezf.validation;
 
-import com.alibaba.fastjson.JSONObject;
-import com.yezf.common.AbsValidationConfig;
-import com.yezf.common.ValidationHolder;
-import com.yezf.utils.FileUtil;
 import com.google.common.base.Joiner;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.google.common.primitives.Ints;
+import com.yezf.common.AbsValidationConfig;
+import com.yezf.utils.FileUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
@@ -20,13 +18,7 @@ import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.context.request.ServletWebRequest;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -72,7 +64,7 @@ public class ValidationInterceptor implements Ordered, InitializingBean {
 
         //参数错误描述
         String errorMsg = getParamsDesc(validation, illegalParamsMap);
-        logger.info("匹配到不合法的参数：参数值={}, 错误描述={}", JSONObject.toJSONString(args), errorMsg);
+        logger.info("匹配到不合法的参数：参数值={}, 错误描述={}", args.toString(), errorMsg);
         AbsValidationConfig validationConfig;
         try {
             validationConfig = getValidationConfig(joinPoint, args, errorMsg);
@@ -230,16 +222,6 @@ public class ValidationInterceptor implements Ordered, InitializingBean {
             descList.add(argDesc);
         }
         return Joiner.on(";").join(descList);
-    }
-
-    private void initThreadLocal() {
-        RequestAttributes ra = RequestContextHolder.getRequestAttributes();
-        ServletRequestAttributes sra = (ServletRequestAttributes) ra;
-        HttpServletRequest request = sra.getRequest();
-        ServletWebRequest servletWebRequest = new ServletWebRequest(request);
-        HttpServletResponse response = servletWebRequest.getResponse();
-        ValidationHolder.setRequest(request);
-        ValidationHolder.setResponse(response);
     }
 
     /**

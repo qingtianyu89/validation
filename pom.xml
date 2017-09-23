@@ -10,14 +10,7 @@
 
     <properties>
         <spring.version>4.0.6.RELEASE</spring.version>
-        <jar.environment>1.0-trunk-SNAPSHOT</jar.environment>
-        <argLine>-Xms512m -Xmx1024m</argLine>
     </properties>
-    <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>7</version>
-    </parent>
 
     <dependencies>
         <!-- spring -->
@@ -73,6 +66,11 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>18.0</version>
+        </dependency>
         <!-- log -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -86,38 +84,7 @@
             <artifactId>aspectjrt</artifactId>
             <version>1.7.2</version>
         </dependency>
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>1.7.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.0.1</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.29</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>18.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-            <version>1.4.1.RELEASE</version>
-        </dependency>
     </dependencies>
-
 
     <build>
         <finalName>validation</finalName>
@@ -163,32 +130,16 @@
         </plugins>
     </build>
 
-    <!-- 自动将jar包、源码包部署到http://maven.z.nuomi.com/nexus/index.html -->
     <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <name>Internal Releases</name>
+            <url>http://47.93.198.35:18081/nexus/content/repositories/releases</url>
+        </repository>
         <snapshotRepository>
             <id>Snapshots</id>
-            <url>http://maven.djcorp.cn:8058/nexus/content/repositories/snapshots</url>
+            <name>Internal Snapshots</name>
+            <url>http://47.93.198.35:18081/nexus/content/repositories/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
-
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-    <scm>
-        <tag>master</tag>
-        <url>https://github.com/qingtianyu89/validation</url>
-        <connection>https://github.com/qingtianyu89/validation.git</connection>
-        <developerConnection>https://github.com/qingtianyu89/validation</developerConnection>
-    </scm>
-    <developers>
-        <developer>
-            <name>qingtianyu89</name>
-            <email>qingtianyu89@163.com</email>
-            <!--<organization>CloudNil</organization>-->
-        </developer>
-    </developers>
 </project>
