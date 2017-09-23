@@ -32,7 +32,7 @@ public @interface Item {
 
     /**
      * 支持的参数类型, 默认根据参数类型匹配, 可查看{@link ParamTypeEnum}
-     * 参数支持的条件规则可查看{@link com.bj58.daojia.dop2c.custom.interceptors.validation.condition.ConditionEnum}
+     * 参数支持的条件规则可查看{@link com.yezf.validation.condition.ConditionEnum}
      * 可自定义类型和匹配规则, 需继承{@link AbstractParamType}
      */
     Class<?> paramType() default ParamTypeEnum.class;

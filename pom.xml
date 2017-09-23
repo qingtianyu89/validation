@@ -4,15 +4,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.daojia.dop2c</groupId>
+    <groupId>com.yezf</groupId>
     <artifactId>validation</artifactId>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
 
     <properties>
         <spring.version>4.0.6.RELEASE</spring.version>
         <jar.environment>1.0-trunk-SNAPSHOT</jar.environment>
         <argLine>-Xms512m -Xmx1024m</argLine>
     </properties>
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
 
     <dependencies>
         <!-- spring -->
@@ -165,4 +170,25 @@
             <url>http://maven.djcorp.cn:8058/nexus/content/repositories/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <scm>
+        <tag>master</tag>
+        <url>https://github.com/qingtianyu89/validation</url>
+        <connection>https://github.com/qingtianyu89/validation.git</connection>
+        <developerConnection>https://github.com/qingtianyu89/validation</developerConnection>
+    </scm>
+    <developers>
+        <developer>
+            <name>qingtianyu89</name>
+            <email>qingtianyu89@163.com</email>
+            <!--<organization>CloudNil</organization>-->
+        </developer>
+    </developers>
 </project>

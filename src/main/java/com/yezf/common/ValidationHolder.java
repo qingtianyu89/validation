@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2015 daojia.com. All Rights Reserved.
+* Copyright (c) 2015 yezf.com. All Rights Reserved.
 */
 package com.yezf.common;
 

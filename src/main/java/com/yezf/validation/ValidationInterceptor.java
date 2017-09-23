@@ -43,7 +43,7 @@ import java.util.Map;
  *            需要：1.aop 命名空间
  *                 2.aop 扫描配置  <aop:aspectj-autoproxy/>
  *                 3.bean注入  <bean id="validationInterceptor" class="ValidationInterceptor" />
- *                         或者加入扫描配置文件 <context:component-scan base-package="com.bj58.daojia"/>
+ *                         或者加入扫描配置文件 <context:component-scan base-package="com.yezf"/>
  *                 4.继承 @{{@link AbsValidationConfig}} 配置参数错误时需要返回的值
  */
 @Component

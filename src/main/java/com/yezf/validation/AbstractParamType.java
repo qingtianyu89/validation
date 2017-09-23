@@ -46,7 +46,7 @@ public abstract class AbstractParamType implements ParamType {
     public abstract boolean checkIdentity(Object arg, Class type);
 
     /**
-     * 用于添加枚举中的指定条件{@link com.bj58.daojia.dop2c.custom.interceptors.validation.condition.ConditionEnum}
+     * 用于添加枚举中的指定条件{@link ConditionEnum}
      * 可重写
      *
      * @param conditionList
