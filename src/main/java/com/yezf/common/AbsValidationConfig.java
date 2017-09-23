@@ -1,4 +1,4 @@
-package com.bj58.daojia.dop2c.common;
+package com.yezf.common;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -31,10 +31,12 @@ public abstract class AbsValidationConfig {
         this.args = args;
         this.errorMsg = errorMsg;
         RequestAttributes ra = RequestContextHolder.getRequestAttributes();
-        ServletRequestAttributes sra = (ServletRequestAttributes) ra;
-        request = sra.getRequest();
-        ServletWebRequest servletWebRequest = new ServletWebRequest(request);
-        response = servletWebRequest.getResponse();
+        if(ra != null){
+            ServletRequestAttributes sra = (ServletRequestAttributes) ra;
+            request = sra.getRequest();
+            ServletWebRequest servletWebRequest = new ServletWebRequest(request);
+            response = servletWebRequest.getResponse();
+        }
     }
 
     /**

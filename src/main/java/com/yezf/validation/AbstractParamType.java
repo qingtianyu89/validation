@@ -1,9 +1,9 @@
-package com.bj58.daojia.dop2c.validation;
+package com.yezf.validation;
 
 import com.google.common.collect.Lists;
-import com.bj58.daojia.dop2c.validation.condition.Condition;
-import com.bj58.daojia.dop2c.validation.condition.ConditionEnum;
-import com.bj58.daojia.dop2c.validation.condition.ConditionIdentity;
+import com.yezf.validation.condition.Condition;
+import com.yezf.validation.condition.ConditionEnum;
+import com.yezf.validation.condition.ConditionIdentity;
 
 import java.util.Collections;
 import java.util.List;

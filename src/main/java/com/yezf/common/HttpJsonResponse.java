@@ -1,7 +1,7 @@
 /*
 * Copyright (c) 2015 daojia.com. All Rights Reserved.
 */
-package com.bj58.daojia.dop2c.common;
+package com.yezf.common;
 
 import com.alibaba.fastjson.JSON;
 

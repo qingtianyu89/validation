@@ -1,4 +1,4 @@
-package com.bj58.daojia.dop2c.validation;
+package com.yezf.validation;
 
 /**
  * Created by pangming on 2016/11/29.

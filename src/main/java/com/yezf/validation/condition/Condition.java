@@ -1,7 +1,7 @@
-package com.bj58.daojia.dop2c.validation.condition;
+package com.yezf.validation.condition;
 
 
-import com.bj58.daojia.dop2c.validation.ParamVo;
+import com.yezf.validation.ParamVo;
 
 /**
  * Created by pangming on 2016/11/28.

@@ -1,4 +1,4 @@
-package com.bj58.daojia.dop2c.validation;
+package com.yezf.validation;
 
 import com.google.common.base.Preconditions;
 import com.google.common.base.Splitter;

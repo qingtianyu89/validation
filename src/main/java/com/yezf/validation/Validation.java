@@ -1,4 +1,4 @@
-package com.bj58.daojia.dop2c.validation;
+package com.yezf.validation;
 
 import java.lang.annotation.*;
 

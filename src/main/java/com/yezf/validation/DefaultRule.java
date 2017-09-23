@@ -1,11 +1,11 @@
-package com.bj58.daojia.dop2c.validation;
+package com.yezf.validation;
 
 import com.google.common.base.Function;
 import com.google.common.base.Joiner;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
-import com.bj58.daojia.dop2c.validation.condition.Condition;
-import com.bj58.daojia.dop2c.validation.condition.ConditionEnum;
+import com.yezf.validation.condition.Condition;
+import com.yezf.validation.condition.ConditionEnum;
 import org.springframework.util.StringUtils;
 
 import java.lang.ref.Reference;

@@ -1,8 +1,8 @@
-package com.bj58.daojia.dop2c.validation;
+package com.yezf.validation;
 
 import com.google.common.collect.Lists;
 import com.google.common.primitives.Ints;
-import com.bj58.daojia.dop2c.validation.condition.Condition;
+import com.yezf.validation.condition.Condition;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;

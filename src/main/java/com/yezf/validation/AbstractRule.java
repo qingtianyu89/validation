@@ -1,7 +1,7 @@
-package com.bj58.daojia.dop2c.validation;
+package com.yezf.validation;
 
 import com.google.common.base.Preconditions;
-import com.bj58.daojia.dop2c.validation.condition.Condition;
+import com.yezf.validation.condition.Condition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;

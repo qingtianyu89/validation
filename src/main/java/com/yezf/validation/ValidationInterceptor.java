@@ -1,9 +1,9 @@
-package com.bj58.daojia.dop2c.validation;
+package com.yezf.validation;
 
 import com.alibaba.fastjson.JSONObject;
-import com.bj58.daojia.dop2c.common.AbsValidationConfig;
-import com.bj58.daojia.dop2c.common.ValidationHolder;
-import com.bj58.daojia.dop2c.utils.FileUtil;
+import com.yezf.common.AbsValidationConfig;
+import com.yezf.common.ValidationHolder;
+import com.yezf.utils.FileUtil;
 import com.google.common.base.Joiner;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;

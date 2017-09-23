@@ -1,11 +1,11 @@
-package com.bj58.daojia.dop2c.validation.condition;
+package com.yezf.validation.condition;
 
-import com.bj58.daojia.dop2c.validation.Item;
-import com.bj58.daojia.dop2c.validation.NotCheck;
-import com.bj58.daojia.dop2c.validation.ParamVo;
+import com.yezf.validation.Item;
+import com.yezf.validation.NotCheck;
+import com.yezf.validation.ParamVo;
 import com.google.common.base.Preconditions;
 import com.google.common.primitives.Ints;
-import com.bj58.daojia.dop2c.validation.RuleUtils;
+import com.yezf.validation.RuleUtils;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 

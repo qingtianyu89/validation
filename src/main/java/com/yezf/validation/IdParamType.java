@@ -1,7 +1,7 @@
-package com.bj58.daojia.dop2c.validation;
+package com.yezf.validation;
 
 
-import com.bj58.daojia.dop2c.validation.condition.Condition;
+import com.yezf.validation.condition.Condition;
 
 import java.util.List;
 

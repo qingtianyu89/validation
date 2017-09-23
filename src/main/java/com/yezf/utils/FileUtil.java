@@ -1,6 +1,6 @@
-package com.bj58.daojia.dop2c.utils;
+package com.yezf.utils;
 
-import com.bj58.daojia.dop2c.common.AbsValidationConfig;
+import com.yezf.common.AbsValidationConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
